@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #050816;
+  --color-bg-secondary: #0B1120;
+  --color-bg-surface: #111827;
+  --color-bg-card: rgba(17,24,39,0.75);
+  
+  --color-border-glass: rgba(255,255,255,0.08);
+  
+  --color-text-primary: #F8FAFC;
+  --color-text-secondary: #CBD5E1;
+  --color-text-muted: #94A3B8;
+  
+  --color-brand-gold: #D4AF37;
+  --color-brand-gold-dark: #B8860B;
+  --color-brand-purple: #7C3AED;
+  
+  --color-status-success: #22C55E;
+  --color-status-error: #EF4444;
+
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+@layer base {
+  html, body {
+    @apply bg-bg-primary text-text-primary antialiased min-h-screen selection:bg-brand-purple/30 font-sans;
+  }
+}
+
+.bg-radial-purple {
+  background: radial-gradient(circle at 0% 0%, rgba(124, 58, 237, 0.15) 0%, rgba(5, 8, 22, 0) 50%);
+}
+
+.bg-radial-gold {
+  background: radial-gradient(circle at 100% 100%, rgba(212, 175, 55, 0.1) 0%, rgba(5, 8, 22, 0) 50%);
+}
+
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+.text-glow {
+  text-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 25px rgba(124, 58, 237, 0.5);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
