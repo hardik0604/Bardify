@@ -6,6 +6,9 @@ export default function Footer() {
       <div className="flex items-center gap-2 mb-4 md:mb-0">
         Made with React <Heart size={14} className="text-status-error" /> Powered by AI
       </div>
+      <div className="flex items-center gap-2">
+        &copy; {new Date().getFullYear()} Hardik. All rights reserved.
+      </div>
     </footer>
   )
 }
