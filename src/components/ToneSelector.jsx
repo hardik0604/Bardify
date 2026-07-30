@@ -16,7 +16,7 @@ const ToneSelector = memo(function ToneSelector({ styleTone, setStyleTone }) {
           <button
             key={opt.value}
             onClick={() => setStyleTone(opt.value)}
-            className={`flex flex-1 items-center justify-center gap-1.5 md:gap-2 px-2 py-2 md:px-6 md:py-2.5 rounded-xl text-[11px] md:text-sm font-bold transition-all duration-300 ${
+            className={`flex flex-1 items-center justify-center gap-1.5 md:gap-2 px-1 py-2 md:px-6 md:py-2.5 rounded-xl text-[10px] md:text-sm font-bold transition-all duration-300 ${
               isActive 
                 ? 'bg-bg-card shadow-lg text-brand-gold border border-brand-gold/30 scale-[1.02]' 
                 : 'text-text-muted hover:text-text-primary hover:bg-bg-surface'
@@ -25,7 +25,7 @@ const ToneSelector = memo(function ToneSelector({ styleTone, setStyleTone }) {
             aria-label={`Select ${opt.label} tone`}
           >
             {opt.icon}
-            <span className="hidden sm:inline">{opt.label}</span>
+            <span>{opt.label}</span>
           </button>
         );
       })}

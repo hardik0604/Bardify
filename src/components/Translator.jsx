@@ -26,6 +26,7 @@ export default function Translator() {
   const [toastMsg, setToastMsg] = useState('');
   const [styleTone, setStyleTone] = useState('Classic');
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+  const [direction, setDirection] = useState('toShakespearean');
 
   const showToast = useCallback((msg) => {
     setToastMsg(msg);
@@ -34,21 +35,21 @@ export default function Translator() {
 
   const onSubmit = useCallback(async () => {
     if (isTranslating || !inputText.trim()) return;
-    const result = await handleTranslate(inputText, styleTone);
+    const result = await handleTranslate(inputText, styleTone, direction);
     if (result) {
       addHistoryItem(inputText, result, styleTone);
     }
-  }, [inputText, styleTone, isTranslating, handleTranslate, addHistoryItem]);
+  }, [inputText, styleTone, direction, isTranslating, handleTranslate, addHistoryItem]);
 
   const handleToneChange = useCallback(async (newTone) => {
     setStyleTone(newTone);
     if (inputText.trim().length > 0 && !isTranslating) {
-      const result = await handleTranslate(inputText, newTone);
+      const result = await handleTranslate(inputText, newTone, direction);
       if (result) {
         addHistoryItem(inputText, result, newTone);
       }
     }
-  }, [inputText, isTranslating, handleTranslate, addHistoryItem]);
+  }, [inputText, direction, isTranslating, handleTranslate, addHistoryItem]);
 
   const onClear = useCallback(() => {
     setInputText('');
@@ -66,19 +67,7 @@ export default function Translator() {
     }
   }, [translatedText, showToast]);
 
-  const onDownload = useCallback(() => {
-    if (!translatedText) return;
-    const blob = new Blob([translatedText], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `Shakespeare_Translation_${new Date().getTime()}.txt`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    showToast('File downloaded successfully!');
-  }, [translatedText, showToast]);
+
 
   const onSwap = useCallback(() => {
     if (!translatedText) return;
@@ -116,14 +105,22 @@ export default function Translator() {
     <div id="translator" className="w-full max-w-6xl flex flex-col relative items-center z-10">
       <Toast message={toastMsg} isVisible={!!toastMsg} />
       
-      <div className="w-full flex justify-between items-end mb-6">
+      <div className="w-full flex flex-col sm:flex-row justify-between items-stretch sm:items-end gap-4 mb-6">
         <button 
           onClick={() => setIsHistoryOpen(true)}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-bg-surface/50 backdrop-blur-md border border-border-glass text-text-muted hover:text-brand-gold hover:border-brand-gold/30 hover:bg-bg-card transition-all font-bold text-xs tracking-widest uppercase shadow-md"
+          className="flex justify-center items-center gap-2 px-5 py-2.5 rounded-xl bg-bg-surface/50 backdrop-blur-md border border-border-glass text-text-muted hover:text-brand-gold hover:border-brand-gold/30 hover:bg-bg-card transition-all font-bold text-xs tracking-widest uppercase shadow-md"
         >
           <HistoryIcon size={16} /> History
         </button>
-        <ToneSelector styleTone={styleTone} setStyleTone={handleToneChange} />
+        <div className="flex gap-3 flex-col sm:flex-row items-stretch sm:items-center">
+          <button
+            onClick={() => setDirection(prev => prev === 'toShakespearean' ? 'toModern' : 'toShakespearean')}
+            className="flex justify-center items-center gap-2 px-4 py-2.5 rounded-xl bg-bg-surface/50 backdrop-blur-md border border-border-glass text-brand-gold hover:text-brand-gold-light hover:border-brand-gold/50 transition-all font-bold text-xs tracking-widest uppercase shadow-md"
+          >
+            {direction === 'toShakespearean' ? 'Modern → Shakespeare' : 'Shakespeare → Modern'}
+          </button>
+          <ToneSelector styleTone={styleTone} setStyleTone={handleToneChange} />
+        </div>
       </div>
 
       <div className="w-full bg-bg-card/40 backdrop-blur-2xl rounded-[2rem] p-6 md:p-10 border border-border-glass shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)]">
@@ -137,7 +134,7 @@ export default function Translator() {
             <textarea
               aria-label="Input modern English text"
               className="flex-grow w-full bg-transparent p-5 pb-16 md:p-8 md:pb-16 text-text-primary placeholder-text-muted/40 focus:outline-none resize-none text-lg md:text-2xl font-light leading-relaxed scrollbar-thin rounded-2xl"
-              placeholder="Enter your modern English..."
+              placeholder={direction === 'toModern' ? "Enter thy Shakespearean prose..." : "Enter your modern English..."}
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
             ></textarea>
@@ -187,7 +184,6 @@ export default function Translator() {
             onClear={onClear}
             onCopy={onCopy}
             onSubmit={onSubmit}
-            onDownload={onDownload}
             isTranslating={isTranslating}
             hasInput={inputText.trim().length > 0}
             hasOutput={!!translatedText}

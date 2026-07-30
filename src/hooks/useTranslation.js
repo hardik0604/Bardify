@@ -7,14 +7,14 @@ export default function useTranslation() {
   const [isTranslating, setIsTranslating] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleTranslate = useCallback(async (text, tone) => {
+  const handleTranslate = useCallback(async (text, tone, direction = 'toShakespearean') => {
     if (!text.trim()) return;
     
     setIsTranslating(true);
     setError(null);
     
     try {
-      const result = await translateToShakespeare(text, tone);
+      const result = await translateToShakespeare(text, tone, direction);
       setTranslatedText(result);
       return result;
     } catch (err) {

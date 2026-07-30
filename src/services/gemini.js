@@ -1,4 +1,4 @@
-export async function translateToShakespeare(text, tone) {
+export async function translateToShakespeare(text, tone, direction) {
   if (!text || !text.trim()) {
     throw new Error("The parchment is bare. Pray, provide some text to translate.");
   }
@@ -9,7 +9,7 @@ export async function translateToShakespeare(text, tone) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ text, tone }),
+      body: JSON.stringify({ text, tone, direction }),
     });
 
     const data = await response.json();

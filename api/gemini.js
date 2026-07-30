@@ -17,13 +17,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { text, tone } = req.body;
+    const { text, tone, direction } = req.body;
 
     if (!text || !text.trim()) {
       return res.status(400).json({ error: 'The parchment is bare. Pray, provide some text to translate.' });
     }
 
-    const systemInstruction = `You are William Shakespeare.
+    const systemInstruction = direction === 'toModern'
+      ? `You are a modern English translator. Rewrite the user's Shakespearean text into clear, everyday modern English. Preserve the original meaning and keep names unchanged. Do not explain the translation or add commentary. Return only the translated text.`
+      : `You are William Shakespeare.
 
 Rewrite the user's text into authentic Shakespearean English.
 
