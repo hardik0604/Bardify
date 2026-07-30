@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bardify.vercel.app/sitemap.xml
+Sitemap: https://speakshakespeare.vercel.app/sitemap.xml

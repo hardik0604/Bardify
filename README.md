@@ -1,8 +1,8 @@
-# Bardify — Premium AI Shakespeare Translator
+# SpeakShakespeare — Premium AI Shakespeare Translator
 
 > *Transform your modern words into the timeless poetry of the Bard.*
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-bardify.vercel.app-purple?style=for-the-badge)](https://bardify.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-speakshakespeare.vercel.app-purple?style=for-the-badge)](https://speakshakespeare.vercel.app)
 [![Built with React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)](https://react.dev)
 [![Powered by Gemini](https://img.shields.io/badge/Powered%20by-Gemini%20AI-4285F4?style=for-the-badge&logo=google)](https://ai.google.dev)
 [![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?style=for-the-badge&logo=vercel)](https://vercel.com)
@@ -11,7 +11,7 @@
 
 ## ✨ About
 
-**Bardify** is a premium AI-powered web application that translates modern English text into authentic Elizabethan Shakespearean prose. Powered by Google Gemini AI, it offers multiple tone presets — from *Dramatic* to *Romantic* — wrapped in a stunning dark glassmorphism UI.
+**SpeakShakespeare** is a premium AI-powered web application that translates modern English text into authentic Elizabethan Shakespearean prose. Powered by Google Gemini AI, it offers multiple tone presets — from *Dramatic* to *Romantic* — wrapped in a stunning dark glassmorphism UI.
 
 ---
 
@@ -45,8 +45,8 @@
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/hardik0604/Bardify.git
-cd Bardify
+git clone https://github.com/hardik0604/SpeakShakespeare.git
+cd SpeakShakespeare
 ```
 
 ### 2. Install dependencies
@@ -88,7 +88,7 @@ The app will launch at `http://localhost:5173`.
 ## 📁 Project Structure
 
 ```
-Bardify/
+SpeakShakespeare/
 ├── api/
 │   └── gemini.js          # Vercel Serverless Function (secure API route)
 ├── public/

@@ -22,7 +22,7 @@ export default function Navbar() {
     try {
       if (navigator.share) {
         await navigator.share({
-          title: 'Bardify - AI Shakespeare Translator',
+          title: 'SpeakShakespeare - AI Shakespeare Translator',
           text: 'Transform modern English into the timeless language of William Shakespeare!',
           url: window.location.href
         });
@@ -41,13 +41,13 @@ export default function Navbar() {
       <div 
         className="flex items-center gap-4 group cursor-pointer" 
         onClick={scrollToTop}
-        aria-label="Bardify Home"
+        aria-label="SpeakShakespeare Home"
       >
         <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-gold to-brand-gold-dark flex items-center justify-center text-bg-primary shadow-lg shadow-brand-gold/20 transition-all duration-500 transform group-hover:scale-105 group-hover:rotate-6 border border-brand-gold/50">
           <Feather size={24} strokeWidth={2.5} />
         </div>
         <h1 className="text-2xl font-serif font-bold tracking-wide text-text-primary group-hover:text-brand-gold transition-colors duration-300">
-          Bardify<span className="text-brand-purple">.</span>
+          SpeakShakespeare<span className="text-brand-purple">.</span>
         </h1>
       </div>
       
